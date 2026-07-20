@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TE AMO ISABEL</title>
+    <!-- Tailwind CSS para um design responsivo de alta qualidade -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair para o título clássico, Caveat para o toque manuscrito e Inter para a leitura fluida -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome para ícones românticos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="image.png" type="image/x-icon">
+
+    <style>
+        /* Paleta romântica premium e gradiente de fundo suave */
+        body {
+            background: linear-gradient(135deg, #160a18 0%, #2e081c 50%, #160a18 100%);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Título Responsivo de Alta Elegância */
+        .Letra {
+            font-family: 'Playfair Display', serif;
+            color: #ffffff;
+            /* clamp() impede que a letra quebre em telas de celulares */
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(244, 63, 94, 0.4);
+            animation: fadeInGlow 2s ease-out forwards;
+        }
+
+        /* Parágrafo de declaração estilizado */
+        .Corpo {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #ffe4e6;
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Assinatura com fonte manuscrita */
+        .Assinatura {
+            font-family: 'Caveat', cursive;
+            font-size: 2.2rem;
+            color: #fda4af;
+            text-align: right;
+            margin-top: 1.5rem;
+            display: block;
+        }
+
+        /* Animação de Batimento Cardíaco Realista */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.12); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.22); }
+            70% { transform: scale(1); }
+        }
+        .animate-heartbeat {
+            animation: heartbeat 1.2s infinite ease-in-out;
+        }
+
+        /* Animação de Flutuação de Partículas (Corações, Pétalas) */
+        @keyframes float-up {
+            0% {
+                transform: translateY(110vh) translateX(0) scale(0.5) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: var(--max-opacity, 0.7);
+            }
+            90% {
+                opacity: var(--max-opacity, 0.7);
+            }
+            100% {
+                transform: translateY(-10vh) translateX(var(--drift, 50px)) scale(var(--scale, 1.2)) rotate(var(--rotation, 360deg));
+                opacity: 0;
+            }
+        }
+
+        .heart-particle {
+            position: absolute;
+            bottom: -50px;
+            pointer-events: none;
+            will-change: transform, opacity;
+            animation: float-up var(--duration, 8s) linear infinite;
+        }
+
+        /* Efeito de brilho suave no fundo do painel */
+        .romantic-glow {
+            box-shadow: 0 0 40px rgba(244, 63, 94, 0.15);
+        }
+
+        /* Animação de Entrada */
+        @keyframes fadeInGlow {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body class="flex flex-col justify-between p-4 md:p-8">
+    <!-- Elementos flutuantes de fundo -->
+    <div id="ambient-container" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+    <!-- Luz decorativa difusa -->
+    <div class="absolute w-96 h-96 bg-pink-500/10 blur-[120px] rounded-full pointer-events-none top-1/4 left-1/2 transform -translate-x-1/2"></div>
+
+    <main class="relative z-10 w-full max-w-4xl mx-auto flex flex-col justify-center items-center flex-grow py-8 gap-8">
+        <!-- Título com efeitos de entrada suaves -->
+        <h1 class="Letra">TE AMO ISABEL</h1>
+
+        <!-- Container central do Coração Pulsante -->
+        <div class="w-full max-w-md bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 flex flex-col items-center justify-center relative overflow-hidden h-80 shadow-2xl romantic-glow transition-all duration-500 hover:border-pink-500/30">
+            <!-- Luz decorativa interna -->
+            <div class="absolute w-36 h-36 bg-rose-500/20 blur-[60px] rounded-full pointer-events-none top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+            
+            <h3 class="absolute top-4 text-xs font-semibold uppercase tracking-widest text-rose-300/60">
+                <i class="fa-solid fa-heart-pulse mr-1"></i> Toque no Coração
+            </h3>
+
+            <!-- Coração Central SVG Interativo -->
+            <div class="cursor-pointer relative group transition-transform active:scale-95 z-10 select-none" onclick="triggerHeartBurst(event)">
+                <!-- Dica flutuante -->
+                <span class="absolute -top-12 left-1/2 -translate-x-1/2 bg-rose-950/90 text-rose-200 border border-rose-500/30 px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-lg">
+                    Clique para explodir amor! ❤️
+                </span>
+                
+                <svg id="main-heart" class="w-32 h-32 drop-shadow-[0_0_25px_rgba(244,63,94,0.7)] animate-heartbeat text-rose-500 hover:text-rose-400 transition-colors duration-300" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+
+            <div class="absolute bottom-4 text-center">
+                <p class="text-xs text-rose-300/70">Toque para disparar corações flutuantes!</p>
+            </div>
+        </div>
+
+        <!-- Declaração de amor com acentuação e tipografia corrigidas -->
+        <div class="w-full max-w-lg px-4 text-center">
+            <p class="Corpo">
+                Isabel, és o meu porto seguro e, ao mesmo tempo, a minha maior tentação. Não preciso de mais ninguém.
+                <span class="Assinatura">- Luíster Afonso</span>
+            </p>
+        </div>
+    </main>
+
+    <!-- Rodapé Sutil -->
+    <footer class="relative z-10 w-full text-center py-4 mt-8 text-[11px] text-white/30">
+        <p>Feito com <i class="fa-solid fa-heart text-rose-500 animate-pulse"></i> por Luíster Afonso</p>
+    </footer>
+
+    <!-- Scripts Funcionais de Interação e Efeitos -->
+    <script>
+        // Emojis românticos variados para as partículas
+        const loveAssets = ['❤️', '💖', '💝', '💕', '💗', '🌸', '✨'];
+
+        // Inicializar os sistemas ao carregar a página
+        window.onload = function() {
+            // Inicializar motor ambiental de flutuação contínua
+            startAmbientEngine();
+            
+            // Fazer um pequeno estouro inicial para dar as boas-vindas
+            setTimeout(() => {
+                const rect = document.getElementById('main-heart').getBoundingClientRect();
+                triggerHeartBurst({
+                    clientX: rect.left + rect.width / 2,
+                    clientY: rect.top + rect.height / 2
+                });
+            }, 800);
+        };
+
+        // Motor contínuo de partículas ambientais
+        function startAmbientEngine() {
+            // Cria um coração flutuante de fundo a cada 800 milissegundos
+            setInterval(() => {
+                createAmbientElement();
+            }, 800);
+        }
+
+        // Função para gerar uma única partícula de fundo flutuante
+        function createAmbientElement(customCoords = null, isBurst = false) {
+            const container = document.getElementById('ambient-container');
+            if (!container) return;
+
+            const element = document.createElement('div');
+            element.className = 'heart-particle';
+            
+            // Escolhe um emoji romântico aleatório
+            element.innerText = loveAssets[Math.floor(Math.random() * loveAssets.length)];
+            
+            // Definição de propriedades dinâmicas e aleatórias para as partículas
+            const speed = isBurst ? (1.5 + Math.random() * 2) : (5 + Math.random() * 6);
+            const size = isBurst ? (16 + Math.random() * 20) : (12 + Math.random() * 22);
+            const drift = -120 + Math.random() * 240;
+            const rotation = -360 + Math.random() * 720;
+            const opacity = isBurst ? (0.7 + Math.random() * 0.3) : (0.2 + Math.random() * 0.5);
+
+            element.style.fontSize = `${size}px`;
+            element.style.setProperty('--duration', `${speed}s`);
+            element.style.setProperty('--drift', `${drift}px`);
+            element.style.setProperty('--rotation', `${rotation}deg`);
+            element.style.setProperty('--scale', `${0.8 + Math.random() * 0.6}`);
+            element.style.setProperty('--max-opacity', opacity);
+
+            if (isBurst && customCoords) {
+                // Posicionamento exato do estouro no ponto onde foi clicado
+                element.style.position = 'fixed';
+                element.style.bottom = 'auto';
+                element.style.top = `${customCoords.y}px`;
+                element.style.left = `${customCoords.x}px`;
+                element.style.transform = 'translate(-50%, -50%)';
+                // Animação de subida acelerada para o efeito de explosão
+                element.style.animation = 'float-up 2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards';
+            } else {
+                // Distribuição horizontal aleatória no fundo da tela
+                element.style.left = `${Math.random() * 100}vw`;
+            }
+
+            container.appendChild(element);
+
+            // Remoção automática da árvore DOM para otimização de performance
+            setTimeout(() => {
+                element.remove();
+            }, speed * 1000);
+        }
+
+        // Função de clique: Dispara uma onda explosiva de partículas
+        function triggerHeartBurst(event) {
+            const coords = {
+                x: event.clientX || window.innerWidth / 2,
+                y: event.clientY || window.innerHeight / 2
+            };
+
+            // Dispara 15 corações em intervalos curtos para simular uma explosão fluida
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createAmbientElement(coords, true);
+                }, i * 35);
+            }
+        }
+    </script>
+</body>
+</html>
